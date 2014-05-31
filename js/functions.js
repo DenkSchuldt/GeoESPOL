@@ -79,6 +79,10 @@
 	    heading   = 6.000000;
 	    tilt      = 65.000000;
 	    range     = 970;
+		
+		addKmzFromUrl("https://3dwarehouse.sketchup.com/3dw/getpubliccontent?contentId=ff9c992c-5238-460b-a181-3ea27641861e&fn=ESPOL_Obelisco.kmz");
+		addKmzFromUrl("https://3dwarehouse.sketchup.com/3dw/getpubliccontent?contentId=2fa23d97-1c9e-480f-bbf1-5816c28ba4db&fn=edificio_Bienestar_Estudiantil_sala_de_profesores_activos_fijos_LDP.kmz");
+		
 	    ge.getLayerRoot().enableLayerById(ge.LAYER_BORDERS, true);
     	ge.getLayerRoot().enableLayerById(ge.LAYER_ROADS, true);
     	ge.getLayerRoot().enableLayerById(ge.LAYER_TERRAIN,true);
@@ -96,6 +100,17 @@
       	ge.getWindow().setVisibility(true);
     }
 
+	function addKmzFromUrl(kmzUrl) {
+		var link = ge.createLink("");
+		link.setHref(kmzUrl);
+
+		var networkLink = ge.createNetworkLink("");
+		networkLink.setLink(link);
+		networkLink.setFlyToView(true);
+
+		ge.getFeatures().appendChild(networkLink);
+	}
+	
     function failureCB(errorCode) {}
 	
 	function moveTo(lat,lng,head,range,altitude,tilt){
